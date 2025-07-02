@@ -79,11 +79,11 @@ data/
             2.png
        		 ...
         vi/
-        	1.png
+            1.png
             2.png
             ...
         text/
-        	1.txt
+            1.txt
             2.txt
             ... 	
 ```
@@ -108,11 +108,11 @@ dataset/
             2.png
        		 ...
         IVT_vi/
-        	1.png
+            1.png
             2.png
             ...
         IVT_text/
-        	1.txt
+            1.txt
             2.txt
             ... 	
 ```
