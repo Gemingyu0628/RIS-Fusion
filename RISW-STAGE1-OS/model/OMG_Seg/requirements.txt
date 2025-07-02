@@ -1,0 +1,11 @@
+-f https://download.openmmlab.com/mmcv/dist/cu117/torch2.0.0/index.html
+-f https://download.pytorch.org/whl/cu117
+
+torch==2.0.1
+torchvision
+mmengine==0.10.2
+mmcv==2.1.0
+mmdet==3.3.0
+ftfy
+timm
+regex
