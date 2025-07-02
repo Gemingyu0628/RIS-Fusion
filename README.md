@@ -4,7 +4,7 @@ Codes for ***Highlight What You Want: Weakly-Supervised Instance-Level Controlla
 
 ------
 
-![pipline](\RISW-STAGE1-OS\configs\pipline.png)
+![pipline](RISW-STAGE1-OS/configs)
 
 ------
 
