@@ -17,7 +17,7 @@ import os
 
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
-# 定义关键词及其近义词
+
 keywords = {
     "left": ["left", "leftmost", "left-hand", "west"],
     "right": ["right", "rightmost", "right-hand", "east"],
@@ -155,31 +155,31 @@ def select_nth_instance(masks, n: int, direction: str):
     if n < 1:
         raise ValueError("n 必须 >= 1")
 
-    # ① 选排序依据：x 还是 y 质心
+    
     if direction in ("left", "right"):
-        axis = 1  # 1 → x 坐标
+        axis = 1  
         reverse = direction == "right"
     elif direction in ("top", "bottom"):
-        axis = 0  # 0 → y 坐标
+        axis = 0  
         reverse = direction == "bottom"
     else:
         raise ValueError("direction 只能是 left/right/top/bottom")
 
-    # ② 排序（升/降序由 reverse 控制）
+    
     sorted_masks = sorted(
         masks,
         key=lambda m: m.nonzero(as_tuple=False).float().mean(dim=0)[axis],
         reverse=reverse,
     )
 
-    # ③ 取第 n‑1 个
+    
     idx = n - 1
     if idx < len(sorted_masks):
         return [sorted_masks[idx]]
-    return []  # n 超范围，返回空列表或自行抛错
+    return [] 
 
 
-# ---------------- 序数词映射 (扩展到 20 已够用) ----------------
+
 ORDINAL_WORDS = {
     "first": 1,
     "second": 2,
@@ -203,7 +203,7 @@ ORDINAL_WORDS = {
     "twentieth": 20,
 }
 
-# ---------------- 方向关键字 ----------------
+
 DIRECTIONS = ("left", "right", "top", "bottom")
 
 
@@ -211,41 +211,41 @@ def parse_keywords(text: str):
 
     text_lc = text.lower()
 
-    # 1) 初始化字典
-    detected = {kw: False for kw in DIRECTIONS}  # 方向
-    detected.update({ord_word: False for ord_word in ORDINAL_WORDS})  # 序数
+   
+    detected = {kw: False for kw in DIRECTIONS}  
+    detected.update({ord_word: False for ord_word in ORDINAL_WORDS})  
     detected["whole"] = False
     detected["direction"] = None
     detected["ordinal"] = None
 
-    # 2) whole
+    
     if re.search(r"\b(whole|entire|整个|整幅)\b", text_lc):
         detected["whole"] = True
 
-    # 3) 方向 (只取第一处命中的方向)
+    
     dir_match = re.search(r"\b(left|right|top|bottom)\b", text_lc)
     if dir_match:
         direction = dir_match.group(1)
         detected[direction] = True
         detected["direction"] = direction
 
-    # 4) 序数（先查单词，再查数字形式）
-    # 4‑a) 单词序数
+    
+    
     for word, idx in ORDINAL_WORDS.items():
         if re.search(r"\b" + word + r"\b", text_lc):
             detected[word] = True
             detected["ordinal"] = idx
             break
 
-    # 4‑b) 数字序数，如 "3rd", "12th"
+    
     if detected["ordinal"] is None:
         num_match = re.search(r"\b(\d+)(?:st|nd|rd|th)?\b", text_lc)
         if num_match:
             n = int(num_match.group(1))
             if 1 <= n <= 20:
-                # 若超出 ORDINAL_WORDS 范围，可直接存 ordinal 而不设 bool 词条
+                
                 detected["ordinal"] = n
-                # 若 n 对应的英文序数在映射表里，就把对应 bool 也置 True
+                
                 inv_map = {v: k for k, v in ORDINAL_WORDS.items()}
                 if n in inv_map:
                     detected[inv_map[n]] = True
