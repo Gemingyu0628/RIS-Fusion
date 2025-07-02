@@ -63,6 +63,8 @@ python ./RISW-STAGE2-OS/test_one_img.py
 
 Result will be saved in the `'./RISW-STAGE2-OS/test_rusults/'` folder.
 
+------
+
 ### 4.Training
 
 ##### RISW-STAGE1-OS
@@ -92,6 +94,8 @@ Run the code
 python train_stage1.py
 ```
 
+------
+
 ##### RISW-STAGE2-OS
 
 Please prepare the training data at 
@@ -119,6 +123,8 @@ After that, run the following command:
 python dataprocess.py
 python train_fused.py
 ```
+------
+
 ### 5.Fusion Results
 
 1.Qualitative comparison of various fusion models.
@@ -130,3 +136,6 @@ python train_fused.py
 2.Quantitative comparison of various fusion models across four test sets.
 
 ![fusion](RISW-STAGE1-OS/configs/table.png)
+
+------
+
