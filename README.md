@@ -119,4 +119,14 @@ After that, run the following command:
 python dataprocess.py
 python train_fused.py
 ```
+### 5.Fusion Results
 
+1.Qualitative comparison of various fusion models.
+
+![fusion](RISW-STAGE1-OS/configs/fusion.png)
+
+------
+
+2.Quantitative comparison of various fusion models across four test sets.
+
+![fusion](RISW-STAGE1-OS/configs/table.png)
