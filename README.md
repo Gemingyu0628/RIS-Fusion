@@ -48,7 +48,7 @@ Please put the '`best_model.pth`' in '`RISW-STAGE2-OS/CRIS/exp/refcoco/CRIS_R50`
 For generate pseudo-labels (Stage1), please run
 
 ```python
-python ./RISW-STAGE1-OS/Stest_one_img.py
+python ./RISW-STAGE1-OS/test_one_img.py
 ```
 
 Result will be saved in the `'./RISW-STAGE1-OS/Result_single_mask/'` folder.
